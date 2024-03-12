@@ -20,7 +20,14 @@ class InputFunctionsTest(unittest.TestCase):
         result = read_file(filename)
         self.assertEqual(result, content)
 
+    def test_read_csv_with_pandas(self):
+        sample_csv = "random.csv"
+        data = {'Column1': [1, 2, 3], 'Column2': ['A', 'B', 'C']}
+        pd.DataFrame(data).to_csv(sample_csv, index=False)
 
+        result = read_csv_with_pandas(sample_csv)
+        expected_df = pd.DataFrame(data)
+        pd.testing.assert_frame_equal(result, expected_df)
 
 
 if __name__ == '__main__':
