@@ -11,6 +11,15 @@ class InputFunctionsTest(unittest.TestCase):
         result = input_text()
         self.assertEqual(result, 'Test input')
 
+    def test_read_file_existing_file(self):
+        content = "some random text"
+        filename = "test_file.txt"
+        with open(filename, 'w') as file:
+            file.write(content)
+
+        result = read_file(filename)
+        self.assertEqual(result, content)
+
 
 
 
